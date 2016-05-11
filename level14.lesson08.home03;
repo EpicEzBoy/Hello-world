@@ -33,7 +33,7 @@ public class Solution
                 System.out.println("GAV");
                 switch (key){
                     case "user":
-                        Person user=new Person(User)
+                        
                 }
 
             }
