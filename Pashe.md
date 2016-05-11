@@ -6,11 +6,7 @@ public class Solution
         String s="Window";
         String a="File";
         System.out.println(s+" " +a);
-        String s="Window";
-        String a="File";
         System.out.println(s+" " +a);
-        String s="Window";
-        String a="File";
         System.out.println(s+" " +a);
     }
 }
