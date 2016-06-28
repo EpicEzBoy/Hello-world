@@ -1,0 +1,88 @@
+package com.javarush.test.level08.lesson08.task05;
+
+import java.util.*;
+
+/* Удалить людей, имеющих одинаковые имена
+Создать словарь (Map<String, String>) занести в него десять записей по принципу «фамилия» - «имя».
+Удалить людей, имеющих одинаковые имена.
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        HashMap<String, String>  map = new HashMap<String, String>();
+        map=createMap();
+        removeTheFirstNameDuplicates(map);
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+
+        while (iterator.hasNext())
+        {
+            //получение «пары» элементов
+            Map.Entry<String, String> pair = iterator.next();
+            String key = pair.getKey();            //ключ
+            String value = pair.getValue();        //значение
+            System.out.println(key + ":" + value);
+        }
+
+    }
+    public static HashMap<String, String> createMap()
+    {
+        HashMap<String, String>  map = new HashMap<String, String>();
+        map.put("Корзун", "Юрий");
+        map.put("Корзун1", "Паша");
+        map.put("Корзун2", "Антон");
+        map.put("Корзун3", "Юрий");
+        map.put("Корзун4", "Паша");
+        map.put("Корзун5", "Виталий");
+        map.put("Корзун6", "Паша");
+        map.put("Корзун7", "Витя");
+        map.put("Корзун8", "Олег");
+        map.put("Корзун9", "Олег");
+        return map;
+
+    }
+
+    public static void removeTheFirstNameDuplicates(HashMap<String, String> map)
+    {
+        ArrayList<String> list=new ArrayList<String>();
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+
+        while (iterator.hasNext())
+        {
+            //получение «пары» элементов
+            Map.Entry<String, String> pair = iterator.next();
+
+            String value = pair.getValue();        //значение
+            list.add(value);
+        }
+
+        for(int i=0;i<list.size();i++){
+            int count=0;
+            String value=list.get(i);
+            for(int j=0;j<list.size();j++){
+                if(list.get(j).equals(value)){
+                    count++;
+                }
+            }
+            if (count>1){
+                removeItemFromMapByValue(map,value);
+            }
+
+
+        }
+
+
+
+    }
+
+    public static void removeItemFromMapByValue(HashMap<String, String> map, String value)
+    {
+        HashMap<String, String> copy = new HashMap<String, String>(map);
+        for (Map.Entry<String, String> pair: copy.entrySet())
+        {
+            if (pair.getValue().equals(value))
+                map.remove(pair.getKey());
+        }
+    }
+}
